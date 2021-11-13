@@ -1,0 +1,56 @@
+.document {
+    font-family: "Roboto Slab", serif;
+  }
+  h1 {
+    color: black;
+    font-weight: 400px;
+  }
+  .card {
+    display: block;
+    margin: 0 auto;
+  }
+  .current-button {
+    background: rgba(211, 211, 211, 0.6);
+    border-radius: 15px;
+  }
+  .note {
+    padding: 10px, 10px;
+    font-size: 20px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    background: rgba(211, 211, 211, 0.6);
+    border-radius: 15px;
+  }
+  .unit {
+    font-size: 19px;
+    background: none;
+    border: none;
+    color: darkslategray;
+  }
+  .current-city {
+    font-size: 40px;
+  }
+  .today {
+    font-size: 20px;
+    display: inline;
+  }
+  .time {
+    font-size: 15px;
+    display: block;
+  }
+  .current-weather {
+    font-size: 35px;
+  }
+  .current-emoji {
+    font-size: 40px;
+  }
+  .details {
+    padding: 10px;
+    font-size: 25px;
+  }
+  .forecast {
+    text-align: center;
+    font-size: 25px;
+  }
+  
