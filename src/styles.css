@@ -53,4 +53,9 @@
     text-align: center;
     font-size: 25px;
   }
+  .open {
+
+      display: block;
+      text-align: center;
+  }
   
