@@ -2,7 +2,6 @@
     font-family: "Roboto Slab", serif;
   }
   h1 {
-    color: black;
     font-weight: 400px;
   }
   .card {
@@ -10,24 +9,10 @@
     margin: 0 auto;
     padding: 10px;
   }
-  .current-button {
-    background: rgba(211, 211, 211, 0.6);
-    border-radius: 15px;
-  }
-  .note {
-    padding: 10px, 10px;
-    font-size: 20px;
-    margin: 0 auto;
-    display: block;
-    text-align: center;
-    background: rgba(211, 211, 211, 0.6);
-    border-radius: 15px;
-  }
-  .unit {
-    font-size: 19px;
+  button {
     background: none;
     border: none;
-    color: darkslategray;
+    color: black;
   }
   .current-city {
     font-size: 40px;
@@ -40,22 +25,31 @@
     font-size: 15px;
     display: block;
   }
+  .windspeed {
+    padding-bottom: 10px
+  }
   .current-weather {
     font-size: 35px;
   }
-  .current-emoji {
-    font-size: 40px;
+  .current-icon {
+    font-size: 45px;
+  }
+  .note {
+    padding: 10px, 10px;
+    font-size: 20px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    background: rgba(211, 211, 211, 0.6);
+    border-radius: 15px;
+    text-transform:capitalize;
   }
   .details {
     padding: 10px;
-    font-size: 25px;
+    font-size: 20px;
   }
-  .forecast {
-    text-align: center;
-    font-size: 25px;
-  }
-  .open {
 
+  .open {
       display: block;
       text-align: center;
   }

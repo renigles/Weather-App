@@ -47,14 +47,12 @@
                 <div class="row current">
                   <div class="col-9">
                     <h2>
-                      <div class="current-weather">
-                        18° <button id="unit-metric">C</button> | <button id ="unit-imperial">F</button>
-                      </div>
-                    </h2>
+                      <span class="current-weather">
+                        18° </span><span><button class = "button" id=" unit-metric">C</button> | <button class ="button" id ="unit-imperial">F</button>
+                      </span>
                   </div>
                   <div class="col-3">
-                    <h2>
-                      <span class="current-emoji">⛅️</span>
+                      <span class="current-icon">⛅️</span>
                     </h2>
                   </div>
                 </div>
@@ -68,18 +66,19 @@
                     id="search-input"
                   />
                 </form>
-              
                 <h3 class="details">
-                  <div>Windspeed 4 km/hr</div>
-                  <div>Precipitation 20%</div>
+                  <div class="windspeed">Windspeed <div><span id="windspeed-number">4</span> km/hr</div></div>
+                  <div class = "precipitation">Humidity </div><div> <span id="humidity-number">20</span>%</div>
                 </h3>
               </div>
             </div>
           </header>
           <section>
-            <br />
+            <span class="border border-2 note"
+            >Partly Cloudy
+            </span>
           </section>
-
+  
       </span>
     </span>
     <p class = "open" ><a href="https://github.com/renigles/Weather-App" target="_blank">Open source code</a> by Renee Iglesias and <a href="https://www.netlify.com/products/" target="_blank">hosted on Netlify</a></p> 
