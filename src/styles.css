@@ -8,6 +8,7 @@
   .card {
     display: block;
     margin: 0 auto;
+    padding: 10px;
   }
   .current-button {
     background: rgba(211, 211, 211, 0.6);
