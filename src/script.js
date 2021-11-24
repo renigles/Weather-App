@@ -5,13 +5,15 @@ function morning(currentHour) {
     return "PM";
   }
 }
+
 function handleSubmit(event) {
   event.preventDefault();
   let input = document.querySelector("#search-input");
-  if (input.value) {
+  let newCity = input.value
+  if (newCity) {
     let city = document.querySelector(".current-city");
-    city.innerHTML = `${input.value}`;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input.value}&units=${units}&appid=${apiKey}`;
+    city.innerHTML = `${newCity}`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&units=${units}&appid=${apiKey}`;
     axios.get(apiUrl).then(showTemperatureCity);
   } else {
     alert("Please type a city");
@@ -37,6 +39,9 @@ function showTemperatureCity(response) {
   let description = response.data.weather[0].description;
   let descriptionElement = document.querySelector(".note");
   descriptionElement.innerHTML = `${description}`;
+  icon = response.data.weather[0].icon;
+  let iconElement = document.querySelector(".current-icon")
+  iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
 }
 function showMetric(event) {
   event.preventDefault();
@@ -49,6 +54,7 @@ function showImperial(event){
 let imperialWeather = (metricWeather * 9)/5 + 32;
 temperatureElement.innerHTML = `${Math.round(imperialWeather)}`;
 }
+
 let now = new Date();
 let currentHour = now.getHours();
 let currentMinute = now.getMinutes();
@@ -161,7 +167,8 @@ let day = days[now.getDay()];
 let hour = hours[currentHour];
 let minute = minutes[currentMinute];
 let units = "metric";
-let metricWeather = null
+let metricWeather = null;
+let icon = null;
 let midDay = morning(currentHour);
 let fullDate = `${day}, ${month} ${currentDate}`;
 let fullTime = `${hour}:${minute} ${midDay}`;
