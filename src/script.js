@@ -40,23 +40,33 @@ function showTemperatureCity(response) {
   let descriptionElement = document.querySelector(".note");
   descriptionElement.innerHTML = `${description}`;
   icon = response.data.weather[0].icon;
+  lat = response.data.coord.lat
+  lon = response.data.coord.lon
   let iconElement = document.querySelector(".current-icon")
   iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
-  displayForecast ();
+let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+axios.get(apiURL).then(displayForecast);
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  let forecast = response.data.daily;
 let forecastElement = document.querySelector(".forecast");
-let days= ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
 let forecastHTML = `<div class="row">`;
-days.forEach(function(day){
-forecastHTML = forecastHTML + `<div class = "col-2 forecast-each" ><div class = "forecast-text-day">${day}</div>
-<div ><img class= "forecast-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="rain" width = 42px></div>
-<div class = "forecast-text-temperature" ><span class= "high-forecast">18  </span><span class= "low-forecast">  16</span></div>
+forecast.forEach(function(forecastDay, index){ 
+  if(index < 6){
+forecastHTML = forecastHTML + `<div class = "col-2 forecast-each" ><div class = "forecast-text-day">${formatDay(forecastDay.dt)}</div>
+<div ><img class= "forecast-icon" src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="${forecastDay.weather[0].main}" width = 42px></div>
+<div class = "forecast-text-temperature" ><span class= "high-forecast">${Math.round(forecastDay.temp.max)}°</span><span class= "low-forecast">  ${Math.round(forecastDay.temp.min)}°</span></div>
 `;
 forecastHTML = forecastHTML + `</div>`;
 forecastElement.innerHTML = forecastHTML;
-})
+}});
+} 
+function formatDay (timestamp) {
+  let date = new Date (timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  return days[day];
 }
 let now = new Date();
 let currentHour = now.getHours();
@@ -172,6 +182,8 @@ let minute = minutes[currentMinute];
 let units = "metric";
 let metricWeather = null;
 let icon = null;
+let lon = null;
+let lat = null;
 let midDay = morning(currentHour);
 let fullDate = `${day}, ${month} ${currentDate}`;
 let fullTime = `${hour}:${minute} ${midDay}`;
