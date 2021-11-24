@@ -45,9 +45,28 @@
     padding: 10px;
     font-size: 20px;
   }
+.forecast-each{
+  display: inline;
+}
+.forecast-text-day {
+ padding : 0px;
+ font-size: 17px;
+text-align: center;
 
+}
+.forecast-text-temperature {
+  padding : 0px;
+  font-size: 17px;
+   text-align: center;
+}
+.forecast-icon {
+  padding : 0px; 
+  margin: 0 auto;
+ display: block;
+}
   .open {
       display: block;
       text-align: center;
   }
+
   

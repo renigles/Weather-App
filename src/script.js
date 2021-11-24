@@ -42,9 +42,22 @@ function showTemperatureCity(response) {
   icon = response.data.weather[0].icon;
   let iconElement = document.querySelector(".current-icon")
   iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+  displayForecast ();
 }
 
-
+function displayForecast() {
+let forecastElement = document.querySelector(".forecast");
+let days= ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
+let forecastHTML = `<div class="row">`;
+days.forEach(function(day){
+forecastHTML = forecastHTML + `<div class = "col-2 forecast-each" ><div class = "forecast-text-day">${day}</div>
+<div ><img class= "forecast-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="rain" width = 42px></div>
+<div class = "forecast-text-temperature" ><span class= "high-forecast">18  </span><span class= "low-forecast">  16</span></div>
+`;
+forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+})
+}
 let now = new Date();
 let currentHour = now.getHours();
 let currentMinute = now.getMinutes();
