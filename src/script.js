@@ -24,9 +24,10 @@ let city = document.querySelector(".current-city");
     axios.get(apiUrl).then(showTemperatureCity);
 }
 function showTemperatureCity(response) {
-  let metricWeather = Math.round(response.data.main.temp);
+  metricWeather = response.data.main.temp;
+  let temperature = Math.round(metricWeather);
   let temperatureElement = document.querySelector(".current-weather");
-  temperatureElement.innerHTML = `${metricWeather}`;
+  temperatureElement.innerHTML = `${temperature}`;
   let windspeed = Math.round(response.data.wind.speed);
   let windspeedElement = document.querySelector("#windspeed-number");
   windspeedElement.innerHTML = `${windspeed}`;
@@ -46,7 +47,7 @@ function showImperial(event){
   event.preventDefault();
   let temperatureElement = document.querySelector(".current-weather");
 let imperialWeather = (metricWeather * 9)/5 + 32;
-temperatureElement.innerHTML = `${imperialWeather}`;
+temperatureElement.innerHTML = `${Math.round(imperialWeather)}`;
 }
 let now = new Date();
 let currentHour = now.getHours();
