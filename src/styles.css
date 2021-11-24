@@ -3,6 +3,7 @@
   }
   h1 {
     font-weight: 400px;
+    text-transform:capitalize;
   }
   .card {
     display: block;

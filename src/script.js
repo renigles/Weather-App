@@ -1,3 +1,53 @@
+function morning(currentHour) {
+  if (currentHour < 11) {
+    return "AM";
+  } else {
+    return "PM";
+  }
+}
+function handleSubmit(event) {
+  event.preventDefault();
+  let input = document.querySelector("#search-input");
+  if (input.value) {
+    let city = document.querySelector(".current-city");
+    city.innerHTML = `${input.value}`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input.value}&units=${units}&appid=${apiKey}`;
+    axios.get(apiUrl).then(showTemperatureCity);
+  } else {
+    alert("Please type a city");
+  }
+}
+function search(start){
+let city = document.querySelector(".current-city");
+    city.innerHTML = `${start}`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${start}&units=${units}&appid=${apiKey}`;
+    axios.get(apiUrl).then(showTemperatureCity);
+}
+function showTemperatureCity(response) {
+  let metricWeather = Math.round(response.data.main.temp);
+  let temperatureElement = document.querySelector(".current-weather");
+  temperatureElement.innerHTML = `${metricWeather}`;
+  let windspeed = Math.round(response.data.wind.speed);
+  let windspeedElement = document.querySelector("#windspeed-number");
+  windspeedElement.innerHTML = `${windspeed}`;
+  let humidity = Math.round(response.data.main.humidity);
+  let humidityElement = document.querySelector("#humidity-number");
+  humidityElement.innerHTML = `${humidity}`;
+  let description = response.data.weather[0].description;
+  let descriptionElement = document.querySelector(".note");
+  descriptionElement.innerHTML = `${description}`;
+}
+function showMetric(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector(".current-weather");
+  temperatureElement.innerHTML = Math.round(metricWeather);
+}
+function showImperial(event){
+  event.preventDefault();
+  let temperatureElement = document.querySelector(".current-weather");
+let imperialWeather = (metricWeather * 9)/5 + 32;
+temperatureElement.innerHTML = `${imperialWeather}`;
+}
 let now = new Date();
 let currentHour = now.getHours();
 let currentMinute = now.getMinutes();
@@ -110,13 +160,7 @@ let day = days[now.getDay()];
 let hour = hours[currentHour];
 let minute = minutes[currentMinute];
 let units = "metric";
-function morning(currentHour) {
-  if (currentHour < 11) {
-    return "AM";
-  } else {
-    return "PM";
-  }
-}
+let metricWeather = null
 let midDay = morning(currentHour);
 let fullDate = `${day}, ${month} ${currentDate}`;
 let fullTime = `${hour}:${minute} ${midDay}`;
@@ -125,33 +169,11 @@ today.innerHTML = `${fullDate}`;
 let time = document.querySelector(".time");
 time.innerHTML = `${fullTime}`;
 let apiKey = "16f449ba2c6eb2958ad3c1f42a8facfa";
-function handleSubmit(event) {
-  event.preventDefault();
-  let input = document.querySelector("#search-input");
-  if (input.value) {
-    let city = document.querySelector(".current-city");
-    city.innerHTML = `${input.value}`;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input.value}&units=${units}&appid=${apiKey}`;
-    axios.get(apiUrl).then(showTemperatureCity);
-  } else {
-    alert("Please type a city");
-  }
-}
-function showTemperatureCity(response) {
-  console.log(response);
-  let temperature = Math.round(response.data.main.temp);
-  let temperatureElement = document.querySelector(".current-weather");
-  temperatureElement.innerHTML = `${temperature}°`;
-  let windspeed = Math.round(response.data.wind.speed);
-  let windspeedElement = document.querySelector("#windspeed-number");
-  windspeedElement.innerHTML = `${windspeed}`;
-  let humidity = Math.round(response.data.main.humidity);
-  let humidityElement = document.querySelector("#humidity-number");
-  humidityElement.innerHTML = `${humidity}`;
-  let description = response.data.weather[0].description;
-  let descriptionElement = document.querySelector(".note");
-  descriptionElement.innerHTML = `${description}`;
-}
-
+search ("new york")
 let form = document.querySelector("form");
 form.addEventListener("submit", handleSubmit);
+let imperial = document.querySelector("#unit-imperial");
+imperial.addEventListener("click", showImperial);
+let metric = document.querySelector("#unit-metric");
+metric.addEventListener("click", showMetric);
+
