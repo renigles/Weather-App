@@ -43,17 +43,7 @@ function showTemperatureCity(response) {
   let iconElement = document.querySelector(".current-icon")
   iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
 }
-function showMetric(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector(".current-weather");
-  temperatureElement.innerHTML = Math.round(metricWeather);
-}
-function showImperial(event){
-  event.preventDefault();
-  let temperatureElement = document.querySelector(".current-weather");
-let imperialWeather = (metricWeather * 9)/5 + 32;
-temperatureElement.innerHTML = `${Math.round(imperialWeather)}`;
-}
+
 
 let now = new Date();
 let currentHour = now.getHours();
@@ -180,8 +170,5 @@ let apiKey = "16f449ba2c6eb2958ad3c1f42a8facfa";
 search ("new york")
 let form = document.querySelector("form");
 form.addEventListener("submit", handleSubmit);
-let imperial = document.querySelector("#unit-imperial");
-imperial.addEventListener("click", showImperial);
-let metric = document.querySelector("#unit-metric");
-metric.addEventListener("click", showMetric);
+
 
